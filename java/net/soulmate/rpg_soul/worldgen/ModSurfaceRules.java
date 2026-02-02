@@ -1,11 +1,9 @@
 package net.soulmate.rpg_soul.worldgen;
 
-import com.github.alexthe666.citadel.server.generation.SurfaceRulesManager;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.SurfaceRules;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.soulmate.rpg_soul.RPG_Soul;
 import net.soulmate.rpg_soul.block.ModBlocks;
 import net.soulmate.rpg_soul.worldgen.biome.ModBiomes;
@@ -14,13 +12,6 @@ public class ModSurfaceRules {
 
     private static final SurfaceRules.ConditionSource IS_RINGING_DEPTHS =
             SurfaceRules.isBiome(ModBiomes.RINGING_DEPTHS);
-
-    public static void setup() {
-        SurfaceRulesManager.registerOverworldSurfaceRule(
-                IS_RINGING_DEPTHS,
-                makeRules()
-        );
-    }
 
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.RuleSource resolith =

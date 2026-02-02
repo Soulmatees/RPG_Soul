@@ -2,19 +2,13 @@ package net.soulmate.rpg_soul;
 
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.world.BiomeManager;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,7 +27,7 @@ import net.soulmate.rpg_soul.loot.ModLootModifiers;
 import net.soulmate.rpg_soul.recipe.ModRecipes;
 import net.soulmate.rpg_soul.screen.ModMenuTypes;
 import net.soulmate.rpg_soul.sound.ModSounds;
-import net.soulmate.rpg_soul.worldgen.ModSurfaceRules;
+import net.soulmate.rpg_soul.worldgen.biome.ModBiomes;
 import org.slf4j.Logger;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -79,7 +73,8 @@ public class RPG_Soul {
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ModSurfaceRules.setup();
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL,
+                    new BiomeManager.BiomeEntry(ModBiomes.RINGING_DEPTHS, 6));
         });
     }
 
@@ -94,14 +89,6 @@ public class RPG_Soul {
         }
     }
 
-
-    @SubscribeEvent
-    public void onLevelLoad(LevelEvent.Load event) {
-        if (event.getLevel() instanceof ServerLevel serverLevel) {
-            BiomeSource source = serverLevel.getChunkSource().getGenerator().getBiomeSource();
-            Registry<Biome> registry = serverLevel.registryAccess().registryOrThrow(Registries.BIOME);
-        }
-    }
 
     @SubscribeEvent
     public void onRegisterCommands(RegisterCommandsEvent event) {
