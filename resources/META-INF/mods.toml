@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT" # или твоя лицензия
+
+[[mods]]
+modId="rpg_soul"
+version="0.1"
+displayName="RPG Soul"
+authors="Author"
+description='''Description goes here'''
+
+[[dependencies.rpg_soul]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.rpg_soul]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
