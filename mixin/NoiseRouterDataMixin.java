@@ -20,8 +20,8 @@ public class NoiseRouterDataMixin {
     private static void injectCustomCaves(HolderGetter<DensityFunction> functions, HolderGetter<NormalNoise.NoiseParameters> noise, boolean amplified, boolean largeBiomes, CallbackInfoReturnable<NoiseRouter> cir) {
         NoiseRouter original = cir.getReturnValue();
 
-        Holder.Reference<DensityFunction> customShapeHolder = functions.getOrThrow(ModDensityFunctions.RINGING_CAVE_SHAPE);
-        DensityFunction myCustomShape = customShapeHolder.value();
+        DensityFunction myCustomShape = functions.getOrThrow(ModDensityFunctions.RINGING_CAVE_SHAPE).value();
+        DensityFunction zero = DensityFunctions.zero();
 
         NoiseRouter modifiedRouter = new NoiseRouter(
                 original.barrierNoise(),
@@ -35,10 +35,10 @@ public class NoiseRouterDataMixin {
                 original.depth(),
                 original.ridges(),
                 original.initialDensityWithoutJaggedness(),
-                original.finalDensity(),
-                DensityFunctions.add(original.veinToggle(), myCustomShape),
-                original.veinRidged(),
-                original.veinGap()
+                DensityFunctions.add(original.finalDensity(), myCustomShape),
+                zero,
+                zero,
+                zero
         );
 
         cir.setReturnValue(modifiedRouter);

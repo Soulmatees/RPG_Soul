@@ -16,8 +16,10 @@ public class ModBiomes {
 
     public static void bootstrap(BootstapContext<Biome> context) {
         HolderGetter<PlacedFeature> features = context.lookup(Registries.PLACED_FEATURE);
-        BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder(features,
-                context.lookup(Registries.CONFIGURED_CARVER));
+        BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder(
+                features,
+                context.lookup(Registries.CONFIGURED_CARVER)
+        );
 
         context.register(RINGING_DEPTHS, new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
