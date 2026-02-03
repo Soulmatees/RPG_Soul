@@ -9,6 +9,9 @@ displayName="RPG Soul"
 authors="Author"
 description='''Description goes here'''
 
+[[mixins]]
+config="mixins.rpg_soul.json"
+
 [[dependencies.rpg_soul]]
 modId="forge"
 mandatory=true

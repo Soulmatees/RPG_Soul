@@ -111,6 +111,10 @@ dependencies {
 
 apply plugin: 'org.spongepowered.mixin'
 
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "mixins.${mod_id}.json"
+}
 
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [
