@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.soulmate.rpg_soul.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "OverworldBiomeBuilderMixin",
+    "NoiseRouterDataMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
