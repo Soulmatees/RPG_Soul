@@ -10,6 +10,9 @@ authors="Author"
 description='''Description goes here'''
 mixinConfigs="rpg_soul.mixins.json"
 
+[[mixins]]
+config="mixins.rpg_soul.json"
+
 [[dependencies.rpg_soul]]
 modId="forge"
 mandatory=true
